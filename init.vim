@@ -33,7 +33,7 @@ set t_vb=
 set tm=500
 
 set foldcolumn=1
-set colorcolumn=80
+set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
@@ -48,20 +48,20 @@ Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " --- vim go (polyglot) settings.
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_function_parameters = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_generate_tags = 1
+" let g:go_highlight_format_strings = 1
+" let g:go_highlight_variable_declarations = 1
+" let g:go_auto_sameids = 1
 
 let g:gruvbox_contrast_dark = 'hard'
 if exists('+termguicolors')
@@ -70,16 +70,24 @@ if exists('+termguicolors')
 endif
 let g:gruvbox_invert_selection='0'
 
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 if executable('rg')
     let g:rg_derive_root='true'
 endif
 
 let mapleader = " "
 let loaded_matchparen = 1
+
+" netrw
 let g:netrw_browse_split=2
 let g:netrw_winsize = 25
 let g:netrw_liststyle=3
 let g:netrw_banner=0
+let g:netrw_localrmdir='rm -r'
 
 colorscheme gruvbox
 set background=dark
@@ -89,6 +97,11 @@ if executable('rg')
 endif
 
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let g:fzf_action = {
+      \ 'ctrl-t' : 'tab split',
+      \ 'ctrl-s' : 'split',
+      \ 'ctrl-v': 'vsplit',
+      \}
 let g:fzf_branch_actions = {
       \ 'rebase': {
       \   'prompt': 'Rebase> ',
@@ -138,6 +151,7 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>r :wincmd =<CR>
+nnoremap <leader>c :wincmd c<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 " File Search
@@ -153,10 +167,14 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 
 " Buffers
-nnoremap <leader>b :ls<CR>
-nnoremap <leader>bo :buffer 
-nnoremap <C-l> :bnext<CR>
-nnoremap <C-h> :bprevious<CR>
+nnoremap <leader>bls :ls<CR>
+nnoremap <leader>bp :bprevious<CR>
+nnoremap <leader>bn :bnext<CR>
+" Quit buffer and go to prev buffer
+nnoremap <leader>bq :<c-u>bp <bar> bd #<cr>
+" Quit all buffer but current one
+nnoremap <leader>bd :<c-u>up <bar> %bd <bar> e#<cr>
+
 
 " Git
 nmap <leader>gh :diffget //3<CR>
