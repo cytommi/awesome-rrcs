@@ -73,6 +73,7 @@ set background=dark
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_powerline_fonts = 1
 
 if executable('rg')
     let g:rg_derive_root='true'
