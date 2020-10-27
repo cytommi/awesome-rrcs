@@ -11,7 +11,6 @@ set nu
 set nowrap
 set nohlsearch
 set smartcase
-set termguicolors
 set guicursor+=i:ver100-iCursor
 set noswapfile
 set nobackup
@@ -22,6 +21,7 @@ set incsearch
 set showmatch
 set mat=2
 set updatetime=50
+set termguicolors
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -40,6 +40,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -62,10 +64,6 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
 
-if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
 colorscheme gruvbox-material
 set background=dark
 
@@ -73,7 +71,15 @@ set background=dark
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'gruvbox_material'
+let g:tmuxline_preset = 'full'
+let g:tmuxline_theme = 'iceberg'
+
+" GRUVBOX
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_cursor = 'purple'
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -151,10 +157,12 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>r :wincmd =<CR>
 nnoremap <leader>c :wincmd c<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>e :CocCommand explorer --position=right<CR>
 
 " File Search
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>af :Files<CR>
+nnoremap <leader>wh :Rg 
 
 " Go to Definition
 nmap <silent> gd <Plug>(coc-definition)
@@ -178,8 +186,8 @@ nnoremap <leader>bd :<c-u>up <bar> %bd <bar> e#<cr>
 
 
 " Git
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gl :diffget //2<CR>
+nmap <leader>gh :diffget //2<CR>
+nmap <leader>gl :diffget //3<CR>
 nmap <leader>gs :G<CR>
 
 
