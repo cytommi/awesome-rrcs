@@ -37,8 +37,7 @@ set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'jremmen/vim-ripgrep'
+Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -48,27 +47,27 @@ Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " --- vim go (polyglot) settings.
-" let g:go_highlight_build_constraints = 1
-" let g:go_highlight_extra_types = 1
-" let g:go_highlight_fields = 1
-" let g:go_highlight_functions = 1
-" let g:go_highlight_methods = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_structs = 1
-" let g:go_highlight_types = 1
-" let g:go_highlight_function_parameters = 1
-" let g:go_highlight_function_calls = 1
-" let g:go_highlight_generate_tags = 1
-" let g:go_highlight_format_strings = 1
-" let g:go_highlight_variable_declarations = 1
-" let g:go_auto_sameids = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_auto_sameids = 1
 
-let g:gruvbox_contrast_dark = 'hard'
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-let g:gruvbox_invert_selection='0'
+colorscheme gruvbox-material
+set background=dark
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -89,8 +88,6 @@ let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_localrmdir='rm -r'
 
-colorscheme gruvbox
-set background=dark
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -155,11 +152,14 @@ nnoremap <leader>c :wincmd c<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 " File Search
-nnoremap <leader>pf :GFiles<CR>
+nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>af :Files<CR>
 
 " Go to Definition
-nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-reference)
+nmap <silent> <leader>rr <Plug>(coc-rename)
+nnoremap <leader>prw: CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Window size
 nnoremap <Leader>+ :vertical resize +5<CR>
@@ -167,7 +167,7 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 
 " Buffers
-nnoremap <leader>bls :ls<CR>
+nnoremap <leader>bl :ls<CR>
 nnoremap <leader>bp :bprevious<CR>
 nnoremap <leader>bn :bnext<CR>
 " Quit buffer and go to prev buffer
@@ -181,31 +181,9 @@ nmap <leader>gh :diffget //3<CR>
 nmap <leader>gl :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>tl :tabnext 
-map <leader>th :tabprev 
-" Let 'tb' toggle between this and the last accessed tab
-let g:lasttab = 1
-nmap <Leader>tb :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -240,3 +218,4 @@ function! HasPaste()
     endif
     return ''
 endfunction
+
