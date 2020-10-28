@@ -176,11 +176,10 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 
 " Buffers
-nnoremap <leader>bl :ls<CR>
-nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bh :bprevious<CR>
+nnoremap <leader>bl :bnext<CR>
 " Quit buffer and go to prev buffer
-nnoremap <leader>bq :<c-u>bp <bar> bd #<cr>
+nnoremap <leader>q :<c-u>bp <bar> bd #<cr>
 " Quit all buffer but current one
 nnoremap <leader>bd :<c-u>up <bar> %bd <bar> e#<cr>
 
