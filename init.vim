@@ -37,6 +37,7 @@ set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
+Plug 'vim-scripts/BufOnly.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
@@ -150,23 +151,20 @@ inoremap kj <ESC>
 " Reload .vimrc
 nnoremap <Leader><CR> :so $MYVIMRC<CR>
 
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>r :wincmd =<CR>
-nnoremap <leader>c :wincmd c<CR>
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <c-h> :wincmd h<CR>
+nnoremap <c-j> :wincmd j<CR>
+nnoremap <c-k> :wincmd k<CR>
+nnoremap <c-l> :wincmd l<CR>
 nnoremap <leader>e :CocCommand explorer --position=right<CR>
 
 " File Search
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>af :Files<CR>
-nnoremap <leader>wh :Rg 
+nnoremap <leader>wh :Rg<CR> 
 
 " Go to Definition
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-reference)
+nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rr <Plug>(coc-rename)
 nnoremap <leader>prw: CocSearch <C-R>=expand("<cword>")<CR><CR>
 
@@ -176,12 +174,12 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 
 " Buffers
-nnoremap <leader>bh :bprevious<CR>
-nnoremap <leader>bl :bnext<CR>
+nnoremap <silent><leader>h :bprevious<CR>
+nnoremap <silent><leader>l :bnext<CR>
 " Quit buffer and go to prev buffer
-nnoremap <leader>q :<c-u>bp <bar> bd #<cr>
+nnoremap <silent><leader>bq :<c-u>bp <bar> bd #<cr>
 " Quit all buffer but current one
-nnoremap <leader>bd :<c-u>up <bar> %bd <bar> e#<cr>
+nnoremap <silent><leader>bf :BufOnly<CR>
 
 
 " Git
