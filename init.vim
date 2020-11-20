@@ -107,6 +107,7 @@ if executable('rg')
 endif
 
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
 let g:fzf_action = {
       \ 'ctrl-t' : 'tab split',
       \ 'ctrl-s' : 'split',
@@ -209,6 +210,7 @@ tnoremap <silent>kj <C-\><C-n>
 nmap <leader>gh :diffget //2<CR>
 nmap <leader>gl :diffget //3<CR>
 nmap <leader>gs :G<CR>
+nmap <leader>gb :GBranches<CR>
 
 
 " Switch CWD to the directory of the open buffer
