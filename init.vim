@@ -40,6 +40,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-rhubarb'
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
@@ -135,7 +140,6 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
@@ -147,14 +151,28 @@ endfunction
 
 " Escape shortcut 
 inoremap kj <ESC>
+inoremap kJ <ESC>
+inoremap Kj <ESC>
+inoremap KJ <ESC>
+
+" Yanking
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y gg"+yG
+
+" Tabs
+map <leader>tc :tabnew<CR>
+map <leader>tq :tabclose<CR>
+map <leader>tl :tabnext<CR>
+map <leader>th :tabprev<CR>
 
 " Reload .vimrc
 nnoremap <Leader><CR> :so $MYVIMRC<CR>
 
-nnoremap <c-h> :wincmd h<CR>
-nnoremap <c-j> :wincmd j<CR>
-nnoremap <c-k> :wincmd k<CR>
-nnoremap <c-l> :wincmd l<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>e :CocCommand explorer --position=right<CR>
 
 " File Search
@@ -162,11 +180,13 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>af :Files<CR>
 nnoremap <leader>wh :Rg<CR> 
 
-" Go to Definition
+" GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rr <Plug>(coc-rename)
-nnoremap <leader>prw: CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Window size
 nnoremap <Leader>+ :vertical resize +5<CR>
@@ -174,12 +194,15 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 
 " Buffers
-nnoremap <silent><leader>h :bprevious<CR>
-nnoremap <silent><leader>l :bnext<CR>
+nnoremap <silent><C-h> :bprevious<CR>
+nnoremap <silent><C-l> :bnext<CR>
+nnoremap <silent><leader>p <C-^>
 " Quit buffer and go to prev buffer
 nnoremap <silent><leader>bq :<c-u>bp <bar> bd #<cr>
 " Quit all buffer but current one
 nnoremap <silent><leader>bf :BufOnly<CR>
+
+tnoremap <silent>kj <C-\><C-n>
 
 
 " Git
