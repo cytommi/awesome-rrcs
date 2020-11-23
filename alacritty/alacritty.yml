@@ -1,10 +1,15 @@
 # Font configuration (changes require restart)
 font:
-  # Normal (roman) font face
   normal:
     family: "MesloLGS NF"
     style: Regular
     size: 14.0 
+
+background_opacity: 0.9
+window:
+  padding:
+    x: 6
+    y: 6
 
 # The definition of color schemes.
 schemes:

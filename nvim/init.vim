@@ -24,7 +24,7 @@ set updatetime=50
 set termguicolors
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " No annoying sound on errors
 set noerrorbells
@@ -33,12 +33,12 @@ set t_vb=
 set tm=500
 
 set foldcolumn=1
-set colorcolumn=100
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+set colorcolumn=80
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'sainnhe/gruvbox-material'
+Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -71,7 +71,6 @@ let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
 
 colorscheme gruvbox-material
-set background=dark
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -85,7 +84,7 @@ let g:tmuxline_theme = 'iceberg'
 
 " GRUVBOX
 let g:gruvbox_material_better_performance = 1
-let g:gruvbox_material_cursor = 'purple'
+let g:gruvbox_material_cursor = 'green'
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -169,6 +168,9 @@ map <leader>th :tabprev<CR>
 
 " Reload .vimrc
 nnoremap <Leader><CR> :so $MYVIMRC<CR>
+
+" Edit init.vim
+nnoremap <Leader>\ <C-w>v :e ~/.config/nvim/init.vim<CR> 
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
