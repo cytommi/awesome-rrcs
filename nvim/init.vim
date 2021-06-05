@@ -36,9 +36,8 @@ set foldcolumn=1
 set colorcolumn=80
 
 call plug#begin('~/.vim/plugged')
+Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-scripts/BufOnly.vim'
-Plug 'sainnhe/gruvbox-material'
-Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -52,7 +51,17 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'rbgrouleff/bclose.vim' 
+Plug 'mattn/emmet-vim'
+Plug 'puremourning/vimspector'
+Plug 'szw/vim-maximizer'
+
+Plug 'sainnhe/gruvbox-material'
+Plug 'gruvbox-community/gruvbox'
+Plug 'aonemd/kuroi.vim'
+Plug 'artanikin/vim-synthwave84'
 call plug#end()
+
 
 " --- vim go (polyglot) settings.
 let g:go_highlight_build_constraints = 1
@@ -74,6 +83,7 @@ colorscheme gruvbox-material
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
+
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -113,6 +123,14 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit',
       \}
 let g:fzf_branch_actions = {
+      \ 'checkout': {
+      \   'prompt': 'Checkout> ',
+      \   'execute': 'echo system("{git} checkout {branch}")',
+      \   'multiple': v:false,
+      \   'keymap': 'enter',
+      \   'required': ['branch'],
+      \   'confirm': v:false,
+      \ },
       \ 'rebase': {
       \   'prompt': 'Rebase> ',
       \   'execute': 'echo system("{git} rebase {branch}")',
@@ -129,7 +147,21 @@ let g:fzf_branch_actions = {
       \   'required': ['branch'],
       \   'confirm': v:false,
       \ },
+      \ 'diff': {
+      \   'prompt': 'Diff> ',
+      \   'execute': 'Git diff {branch}',
+      \   'multiple': v:false,
+      \   'keymap': 'ctrl-f',
+      \   'required': ['branch'],
+      \   'confirm': v:false,
+      \ },
       \}
+
+" Smooth scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 3, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 3, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 3, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 3, 4)<CR>
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -170,13 +202,14 @@ map <leader>th :tabprev<CR>
 nnoremap <Leader><CR> :so $MYVIMRC<CR>
 
 " Edit init.vim
-nnoremap <Leader>\ <C-w>v :e ~/.config/nvim/init.vim<CR> 
+nnoremap <Leader>\ :e ~/.config/nvim/init.vim<CR> 
 
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>e :CocCommand explorer --position=right<CR>
+nnoremap <silent><leader>h :wincmd h<CR>
+nnoremap <silent><leader>j :wincmd j<CR>
+nnoremap <silent><leader>k :wincmd k<CR>
+nnoremap <silent><leader>l :wincmd l<CR>
+nnoremap <silent><leader>e :CocCommand explorer --position=right<CR>
+nnoremap <silent><leader>E :Ranger<CR>
 
 " File Search
 nnoremap <C-p> :GFiles<CR>
@@ -190,6 +223,10 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rr <Plug>(coc-rename)
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>i :CocCommand tsserver.organizeImports<cr>
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Window size
 nnoremap <Leader>+ :vertical resize +5<CR>
@@ -206,7 +243,6 @@ nnoremap <silent><leader>bq :<c-u>bp <bar> bd #<cr>
 nnoremap <silent><leader>bf :BufOnly<CR>
 
 tnoremap <silent>kj <C-\><C-n>
-
 
 " Git
 nmap <leader>gh :diffget //2<CR>
@@ -251,4 +287,15 @@ function! HasPaste()
     endif
     return ''
 endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
 
