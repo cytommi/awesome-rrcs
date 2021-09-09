@@ -9,7 +9,7 @@ require('telescope').setup{
       '--with-filename',
       '--line-number',
       '--column',
-      '--smart-case'
+      '--smart-case',
     },
     prompt_prefix = "> ",
     selection_caret = "> ",
@@ -47,22 +47,16 @@ require('telescope').setup{
         i = {
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
+            ["<C-c>"] = actions.close,
         },
         n = {
             ["<C-j>"] = actions.move_selection_next,
             ["<C-p>"] = actions.move_selection_previous,
+            ["<C-c>"] = actions.close,
         },
     }
   },
-  extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
-        }
-  }
 }
-
-require('telescope').load_extension('fzy_native')
 
 local M = {}
 M.git_branches = function()
@@ -72,6 +66,14 @@ M.git_branches = function()
             map('n', '<c-d>', actions.git_delete_branch)
             return true
         end
+    })
+end
+
+
+M.search_home = function()
+    require("telescope.builtin").find_files({
+        prompt_title = '< HOME >',
+        cwd = '~',
     })
 end
 

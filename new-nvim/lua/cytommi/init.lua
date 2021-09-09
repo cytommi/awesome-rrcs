@@ -1,1 +1,5 @@
-require("cytommi.telescope");
+require("cytommi.telescope")
+require("cytommi.lsp")
+require("cytommi.treesitter")
+require("cytommi.cmp")
+-- require("cytommi.compe")
