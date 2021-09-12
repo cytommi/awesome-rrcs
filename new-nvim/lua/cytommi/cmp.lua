@@ -1,4 +1,7 @@
-vim.o.completeopt = 'menuone,noselect'
+-- vim autocomplete setup
+vim.o.completeopt = 'menuone,noselect,noinsert'
+vim.g.completion_matching_strategy = { 'exact', 'substring', 'fuzzy' }
+
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
@@ -30,5 +33,6 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'path' }
   },
 }

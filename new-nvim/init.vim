@@ -1,10 +1,8 @@
-autocmd!
-
 set path+=**
 
 syntax enable
-set tabstop=4 softtabstop=4
-set shiftwidth=4
+set tabstop=2 softtabstop=2
+set shiftwidth=2
 set exrc
 set relativenumber
 set nohlsearch
@@ -39,12 +37,14 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" Coc (used only for formatting and linting)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 
-
-" Autocompletion 
+" Autocompletion
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
 
@@ -64,6 +64,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-unimpaired'
+
 
 " Status Line
 Plug 'vim-airline/vim-airline'
@@ -89,19 +91,18 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 nnoremap <Leader><cr> :so $MYVIMRC<cr>
 
 " Edit init.vim
-nnoremap <Leader>\ :e ~/.config/nvim/init.vim<CR> 
+nnoremap <Leader>\ :e ~/.config/nvim/init.vim<CR>
 
-" Delete char without yank
+" Delete without yank
 nnoremap x "_x
+vnoremap x "_x
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
 
 " Yanking
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
-
-" Explorer
-nnoremap <leader>e :E<cr>
-
 
 " Window navigation
 nnoremap <silent><leader>h <cmd>wincmd h<CR>
@@ -109,7 +110,7 @@ nnoremap <silent><leader>j <cmd>wincmd j<CR>
 nnoremap <silent><leader>k <cmd>wincmd k<CR>
 nnoremap <silent><leader>l <cmd>wincmd l<CR>
 
-" Escape shortcut 
+" Escape shortcut
 inoremap kj <ESC>
 inoremap kJ <ESC>
 inoremap Kj <ESC>
@@ -141,5 +142,8 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
+ nnoremap <leader>e :CocCommand explorer --position=right<CR>
+
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
