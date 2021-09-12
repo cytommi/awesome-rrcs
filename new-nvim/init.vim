@@ -1,6 +1,6 @@
-set path+=**
-
 syntax enable
+
+set path+=**
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 set exrc
@@ -66,26 +66,59 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-unimpaired'
 
-
 " Status Line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Color themes
 Plug 'gruvbox-community/gruvbox'
-
 call plug#end()
 
 lua require("cytommi")
 
+" Colors
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 colorscheme gruvbox
-highlight Normal guibg=none
+let g:gruvbox_invert_selection='0'
+set background=dark
+highlight CursorLineNR guibg=NONE ctermbg=NONE
+highlight ColorColumn ctermbg=0 guibg=#32302f
+highlight SignColumn guibg=NONE
+highlight LineNr guifg=#3c3836
+highlight netrwDir guifg=#5eacd3
+highlight qfFileName guifg=#aed75f
+
+" Telescope Colors
+highlight TelescopeSelection      guifg=#5eacd3 gui=bold " Selected item
+highlight TelescopeSelectionCaret guifg=#fe8019          " Selection caret
+highlight TelescopeMultiSelection guifg=#fabd2f          " Multisections
+
+" Border highlight groups
+highlight TelescopeBorder         guifg=#ebdbb2
+highlight TelescopePromptBorder   guifg=#ebdbb2
+highlight TelescopeResultsBorder  guifg=#ebdbb2
+highlight TelescopePreviewBorder  guifg=#ebdbb2
+
+" Highlight characters your input matches
+highlight TelescopeMatching       guifg=#aed75f
+
+" Color the prompt prefix
+highlight TelescopePromptPrefix   guifg=#fabd2f
+
+" Cursor
+set cursorline " Enables cursor line position tracking:
+highlight clear CursorLine " Sets the line numbering to red background:
+
 
 let mapleader = " "
 
-
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+nnoremap <bs> <C-^>
 
 " Reload .vimrc
 nnoremap <Leader><cr> :so $MYVIMRC<cr>
