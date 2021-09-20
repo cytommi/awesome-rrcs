@@ -81,6 +81,7 @@ if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
+
 colorscheme gruvbox
 let g:gruvbox_invert_selection='0'
 set background=dark
@@ -90,6 +91,7 @@ highlight SignColumn guibg=NONE
 highlight LineNr guifg=#3c3836
 highlight netrwDir guifg=#5eacd3
 highlight qfFileName guifg=#aed75f
+highlight Normal guibg=NONE ctermbg=NONE
 
 " Telescope Colors
 highlight TelescopeSelection      guifg=#5eacd3 gui=bold " Selected item
@@ -111,7 +113,6 @@ highlight TelescopePromptPrefix   guifg=#fabd2f
 " Cursor
 set cursorline " Enables cursor line position tracking:
 highlight clear CursorLine " Sets the line numbering to red background:
-
 
 let mapleader = " "
 
