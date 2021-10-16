@@ -38,8 +38,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " Coc (used only for formatting and linting)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'jose-elias-alvarez/null-ls.nvim'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
@@ -47,6 +48,9 @@ Plug 'kabouzeid/nvim-lspinstall'
 " Autocompletion
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
+
+" Formatter
+Plug 'sbdchd/neoformat'
 
 " Smooth scroll
 Plug 'terryma/vim-smooth-scroll'
@@ -74,10 +78,15 @@ Plug 'edkolev/tmuxline.vim'
 " Nerdtree
 Plug 'preservim/nerdtree'
 
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+
 " Color themes
 Plug 'gruvbox-community/gruvbox'
 Plug 'doums/darcula'
 Plug 'lifepillar/vim-solarized8'
+Plug 'ghifarit53/tokyonight-vim'
+
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()
@@ -85,12 +94,12 @@ call plug#end()
 lua require("cytommi")
 
 " Colors
-if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
+" if exists('+termguicolors')
+"     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" endif
 
-colorscheme darcula
+colorscheme tokyonight
 set background=dark
 highlight CursorLineNR guibg=NONE ctermbg=NONE
 highlight ColorColumn ctermbg=0 guibg=#32302f
@@ -99,9 +108,10 @@ highlight clear LineNr
 highlight LineNr guifg=#32302f
 highlight netrwDir guifg=#5eacd3
 highlight qfFileName guifg=#aed75f
-highlight Normal guibg=NONE ctermbg=NONE
+" highlight Normal guibg=NONE ctermbg=NONE
 
 let g:gruvbox_invert_selection='0'
+let g:airline_powerline_fonts = 1
 
 " Telescope Colors
 highlight TelescopeSelection      guifg=#5eacd3 gui=bold " Selected item
@@ -119,10 +129,6 @@ highlight TelescopeMatching       guifg=#aed75f
 
 " Color the prompt prefix
 highlight TelescopePromptPrefix   guifg=#fabd2f
-
-" Cursor
-set cursorline " Enables cursor line position tracking:
-highlight clear CursorLine " Sets the line numbering to red background:
 
 let mapleader = " "
 
@@ -192,17 +198,5 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
