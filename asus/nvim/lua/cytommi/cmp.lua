@@ -1,7 +1,10 @@
 -- nvim-cmp setup
 local cmp = require'cmp'
+local types = require('cmp.types')
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 cmp.setup {
+  preselect = types.cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
