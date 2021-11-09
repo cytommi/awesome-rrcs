@@ -71,9 +71,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-unimpaired'
 
 " Status Line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 
 " Nerdtree
 Plug 'preservim/nerdtree'
@@ -112,7 +111,6 @@ highlight qfFileName guifg=#aed75f
 " highlight Normal guibg=NONE ctermbg=NONE
 
 let g:gruvbox_invert_selection='0'
-let g:airline_powerline_fonts = 1
 
 " Telescope Colors
 highlight TelescopeSelection      guifg=#5eacd3 gui=bold " Selected item
