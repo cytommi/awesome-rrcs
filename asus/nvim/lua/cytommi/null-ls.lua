@@ -14,6 +14,8 @@ end
 null_ls.config({ sources =  {
   null_ls.builtins.diagnostics.eslint_d,
   null_ls.builtins.formatting.prettier,
+  null_ls.builtins.formatting.rustfmt,
+  null_ls.builtins.formatting.styler
   -- null_ls.builtins.diagnostics.eslint.with({
   --   command = local_eslint,
   --   condition = function(utils)

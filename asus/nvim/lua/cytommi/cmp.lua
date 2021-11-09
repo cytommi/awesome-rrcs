@@ -26,8 +26,8 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'path' },
     { name = 'vsnip' }, 
+    { name = 'path' },
     { name = 'buffer', keyword_length = 5 },
 
   },
