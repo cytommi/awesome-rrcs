@@ -26,6 +26,7 @@ set signcolumn=yes
 set cmdheight=2
 set updatetime=50
 set timeoutlen=500
+set completeopt=menu,menuone,noselect
 
 call plug#begin('~/.vim/plugged')
 
@@ -37,10 +38,8 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-" Coc (used only for formatting and linting)
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'jose-elias-alvarez/null-ls.nvim'
+
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
@@ -48,9 +47,10 @@ Plug 'kabouzeid/nvim-lspinstall'
 " Autocompletion
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
-
-" Formatter
-Plug 'sbdchd/neoformat'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 " Smooth scroll
 Plug 'terryma/vim-smooth-scroll'
@@ -71,9 +71,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-unimpaired'
 
 " Status Line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 
 " Nerdtree
 Plug 'preservim/nerdtree'
@@ -86,6 +85,8 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'doums/darcula'
 Plug 'lifepillar/vim-solarized8'
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'shaunsingh/nord.nvim'
+Plug 'mhartington/oceanic-next'
 
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -99,19 +100,17 @@ lua require("cytommi")
 "     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " endif
 
-colorscheme tokyonight
+colorscheme gruvbox
 set background=dark
-highlight CursorLineNR guibg=NONE ctermbg=NONE
+highlight CursorLineNR guibg=NONE ctermbg=NONE 
 highlight ColorColumn ctermbg=0 guibg=#32302f
 highlight SignColumn guibg=NONE ctermbg=NONE
-highlight clear LineNr 
-highlight LineNr guifg=#32302f
+highlight LineNr guifg=#665c54
 highlight netrwDir guifg=#5eacd3
 highlight qfFileName guifg=#aed75f
 " highlight Normal guibg=NONE ctermbg=NONE
 
 let g:gruvbox_invert_selection='0'
-let g:airline_powerline_fonts = 1
 
 " Telescope Colors
 highlight TelescopeSelection      guifg=#5eacd3 gui=bold " Selected item
@@ -192,10 +191,13 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
+let g:NERDTreeWinPos = "right"
 nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 
 
 
