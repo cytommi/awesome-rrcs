@@ -18,7 +18,7 @@ require('telescope').setup{
     initial_mode = "insert",
     selection_strategy = "reset",
     sorting_strategy = "descending",
-    layout_strategy = "vertical",
+    layout_strategy = "horizontal",
     layout_config = {
       horizontal = {
         mirror = false,
@@ -77,5 +77,13 @@ M.search_home = function()
         cwd = '~',
     })
 end
+
+M.search_nvim_settings = function()
+    require("telescope.builtin").find_files({
+        prompt_title = '< NVIM SETTINGS >',
+        cwd = '~/.config/nvim',
+    })
+end
+
 
 return M

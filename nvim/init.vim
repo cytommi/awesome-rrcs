@@ -38,11 +38,11 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Autocompletion
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
@@ -90,6 +90,9 @@ Plug 'mhartington/oceanic-next'
 
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+Plug 'theprimeagen/harpoon'
+
 call plug#end()
 
 lua require("cytommi")
