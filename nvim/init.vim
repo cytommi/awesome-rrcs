@@ -37,6 +37,7 @@ Plug 'mbbill/undotree'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 
 " LSP
@@ -195,13 +196,22 @@ function! VisualSelection(direction, extra_filter) range
 endfunction
 
 let g:NERDTreeWinPos = "right"
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+autocmd TermOpen * startinsert
 
+function! ToggleQuickFix()
+    if getqflist({'winid' : 0}).winid
+        cclose
+    else
+        copen
+    endif
+endfunction
 
+command! -nargs=0 -bar ToggleQuickFix call ToggleQuickFix()
 
-
+nnoremap <leader>tq :ToggleQuickFix<CR>

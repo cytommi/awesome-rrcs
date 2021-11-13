@@ -55,9 +55,21 @@ require('telescope').setup{
             ["<C-p>"] = actions.move_selection_previous,
             ["<C-c>"] = actions.close,
         },
-    }
+    },
+    extensions = {
+      fzf = {
+        fuzzy = true,                    -- false will only do exact matching
+        override_generic_sorter = true,  -- override the generic sorter
+        override_file_sorter = true,     -- override the file sorter
+        case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+      }
+    },
   },
 }
+
+require('telescope').load_extension('fzf')
+
+    
 
 local M = {}
 M.git_branches = function()
@@ -83,6 +95,13 @@ M.search_nvim_settings = function()
         prompt_title = '< NVIM SETTINGS >',
         cwd = '~/.config/nvim',
     })
+end
+
+
+M.project_files = function()
+  local opts = {} -- define here if you want to define something
+  local ok = pcall(require'telescope.builtin'.git_files, opts)
+  if not ok then require'telescope.builtin'.find_files(opts) end
 end
 
 
