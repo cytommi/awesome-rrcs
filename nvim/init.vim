@@ -175,6 +175,17 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 3, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 3, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 3, 4)<CR>
 
+" No more :Q
+nnoremap :Q :q
+
+nnoremap <leader>tq :ToggleQuickFix<CR>
+
+" Terminal mode escaping
+tnoremap kj <C-\><C-n>
+tnoremap Kj <C-\><C-n>
+tnoremap kJ <C-\><C-n>
+tnoremap KJ <C-\><C-n>
+
 " Visual mode pressing * or # searches for the current selection
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
@@ -202,8 +213,6 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-autocmd TermOpen * startinsert
-
 function! ToggleQuickFix()
     if getqflist({'winid' : 0}).winid
         cclose
@@ -214,4 +223,3 @@ endfunction
 
 command! -nargs=0 -bar ToggleQuickFix call ToggleQuickFix()
 
-nnoremap <leader>tq :ToggleQuickFix<CR>
