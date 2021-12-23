@@ -1,8 +1,5 @@
 local lsp_installer = require("nvim-lsp-installer")
 
-
-
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local function on_attach(client, bufnr)
@@ -11,6 +8,13 @@ local function on_attach(client, bufnr)
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- (optional) Customize the options passed to the server
+  if client.name == "tsserver" then
+      -- Use null-ls for all formatting
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+  end
 
   -- Mappings.
   local opts = { noremap=true, silent=true }

@@ -1,21 +1,37 @@
-local lsp_config = require("lspconfig")
+-- local lsp_config = require("lspconfig")
 local null_ls = require("null-ls")
 
-function Fmt_on_save(client)
-    -- Formatting on save
-    if client.resolved_capabilities.document_formatting then
-        vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
-    end
-end
+-- function Fmt_on_save(client)
+--     -- Formatting on save
+--     if client.resolved_capabilities.document_formatting then
+--         vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
+--     end
+-- end
 -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils/issues/63
 -- local local_eslint = "node_modules/.bin/eslint"
 -- local local_prettier = "node_modules/.bin/prettier"
 
-null_ls.config({ sources =  {
-  null_ls.builtins.diagnostics.eslint_d,
-  null_ls.builtins.formatting.prettier,
-  null_ls.builtins.formatting.rustfmt,
-  null_ls.builtins.formatting.styler
+null_ls.setup({
+    sources = {
+      null_ls.builtins.diagnostics.eslint_d,
+      null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.rustfmt,
+      null_ls.builtins.formatting.styler,
+      null_ls.builtins.formatting.autopep8
+    },
+    -- you can reuse a shared lspconfig on_attach callback here
+    on_attach = function(client)
+        if client.resolved_capabilities.document_formatting then
+            vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+        end
+    end,
+})
+
+-- null_ls.config({ sources =  {
+--   null_ls.builtins.diagnostics.eslint_d,
+--   null_ls.builtins.formatting.prettier,
+--   null_ls.builtins.formatting.rustfmt,
+--   null_ls.builtins.formatting.styler
   -- null_ls.builtins.diagnostics.eslint.with({
   --   command = local_eslint,
   --   condition = function(utils)
@@ -36,10 +52,10 @@ null_ls.config({ sources =  {
   --     return utils.root_has_file(local_prettier)
   --   end,
   -- })
-}})
+-- }})
 
-lsp_config['null-ls'].setup({
-  on_attach = function(client)
-    Fmt_on_save(client)
-  end
-})
+-- lsp_config['null-ls'].setup({
+--   on_attach = function(client)
+--     Fmt_on_save(client)
+--   end
+-- })

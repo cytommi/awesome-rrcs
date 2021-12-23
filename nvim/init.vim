@@ -83,6 +83,7 @@ Plug 'folke/trouble.nvim'
 
 " Color themes
 Plug 'gruvbox-community/gruvbox'
+Plug 'eddyekofo94/gruvbox-flat.nvim'
 Plug 'doums/darcula'
 Plug 'lifepillar/vim-solarized8'
 Plug 'ghifarit53/tokyonight-vim'
@@ -103,6 +104,8 @@ lua require("cytommi")
 "     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 "     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " endif
+
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
 colorscheme gruvbox
 set background=dark
@@ -168,6 +171,7 @@ inoremap kj <ESC>
 inoremap kJ <ESC>
 inoremap Kj <ESC>
 inoremap KJ <ESC>
+inoremap <C-e><C-n> <ESC>
 
 " Smooth scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 3, 2)<CR>
@@ -181,10 +185,7 @@ nnoremap :Q :q
 nnoremap <leader>tq :ToggleQuickFix<CR>
 
 " Terminal mode escaping
-tnoremap kj <C-\><C-n>
-tnoremap Kj <C-\><C-n>
-tnoremap kJ <C-\><C-n>
-tnoremap KJ <C-\><C-n>
+tnoremap <C-e><C-n> <C-\><C-n>
 
 " Visual mode pressing * or # searches for the current selection
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
@@ -222,4 +223,5 @@ function! ToggleQuickFix()
 endfunction
 
 command! -nargs=0 -bar ToggleQuickFix call ToggleQuickFix()
+
 
