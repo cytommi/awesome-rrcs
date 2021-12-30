@@ -37,6 +37,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -104,7 +107,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # disable focos on mouse hover
-focus_follows_mouse no
+#focus_follows_mouse no
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -224,16 +227,15 @@ client.unfocused        #32302f #32302f #dfbf8e #32302f   #32302f
 client.focused_inactive #32302f #32302f #dfbf8e #32302f   #32302f
 
 for_window [class="^.*"] border pixel 4
-gaps inner 6
-gaps outer 4
+gaps inner 8
+gaps outer 2
 
-exec compton 
+exec picom 
 
 bar {
     font pango:Firacode 15
-    status_command $HOME/.local/bin/bumblebee-status\
-        -m spotify datetime battery \
-        -p spotify.layout=spotify.song\
+    status_command bumblebee-status\
+        -m datetime battery \
         -t gruvbox-powerline
 
     position top
