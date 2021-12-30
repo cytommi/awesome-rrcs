@@ -233,7 +233,7 @@ gaps outer 2
 exec picom 
 
 bar {
-    font pango:Firacode 15
+    font pango:JetBrainsMono NF 16
     status_command bumblebee-status\
         -m datetime battery \
         -t gruvbox-powerline
@@ -256,6 +256,3 @@ bar {
 # Wallpaper
 exec_always feh --bg-fill /home/cytommi/Pictures/fuji.jpg
 
-# Polybar
-# exec_always $HOME/.config/polybar/colorblocks/scripts/pywal.sh $HOME/Pictures/fuji.jpg
-# exec_always $HOME/.config/polybar/launch.sh --pwidgets
