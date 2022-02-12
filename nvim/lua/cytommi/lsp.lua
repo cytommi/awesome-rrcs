@@ -1,5 +1,11 @@
 local lsp_installer = require("nvim-lsp-installer")
 
+vim.diagnostic.config({
+  float = {
+    source = 'always'
+  }
+})
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local function on_attach(client, bufnr)
@@ -11,6 +17,15 @@ local function on_attach(client, bufnr)
 
   -- (optional) Customize the options passed to the server
   if client.name == "tsserver" then
+      -- Use null-ls for all formatting
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+
+      local ts_utils = require("nvim-lsp-ts-utils")
+      ts_utils.setup{}
+  end
+
+  if client.name == "gopls" then
       -- Use null-ls for all formatting
       client.resolved_capabilities.document_formatting = false
       client.resolved_capabilities.document_range_formatting = false
@@ -32,7 +47,7 @@ local function on_attach(client, bufnr)
   buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
