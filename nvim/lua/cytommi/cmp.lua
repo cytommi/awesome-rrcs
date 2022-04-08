@@ -32,8 +32,10 @@ cmp.setup {
     { name = 'vsnip' }, 
     { name = 'path' },
     { name = 'buffer', keyword_length = 5 },
-
   },
+  experimental = {
+    native_menu = false,
+  }
 }
 
 

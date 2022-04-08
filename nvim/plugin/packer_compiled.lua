@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["ayu-vim"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/ayu-vim",
+    url = "https://github.com/ayu-theme/ayu-vim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -93,6 +98,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
+  },
+  ["git-worktree.nvim"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/git-worktree.nvim",
+    url = "https://github.com/theprimeagen/git-worktree.nvim"
   },
   gruvbox = {
     loaded = true,
@@ -119,10 +129,10 @@ _G.packer_plugins = {
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
-  ["nightfox.nvim"] = {
+  ["no-clown-fiesta.nvim"] = {
     loaded = true,
-    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
-    url = "https://github.com/EdenEast/nightfox.nvim"
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/no-clown-fiesta.nvim",
+    url = "https://github.com/aktersnurra/no-clown-fiesta.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -169,6 +179,11 @@ _G.packer_plugins = {
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  ["oceanic-next"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/oceanic-next",
+    url = "https://github.com/mhartington/oceanic-next"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -189,6 +204,11 @@ _G.packer_plugins = {
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  spaceduck = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/spaceduck",
+    url = "https://github.com/pineapplegiant/spaceduck"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -198,11 +218,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["tmuxline.vim"] = {
-    loaded = true,
-    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/tmuxline.vim",
-    url = "https://github.com/edkolev/tmuxline.vim"
   },
   ["trouble.nvim"] = {
     loaded = true,
@@ -262,5 +277,6 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

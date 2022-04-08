@@ -1,75 +1,98 @@
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+return require("packer").startup(function(use)
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
 
-  -- Telescope
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+	-- Telescope
+	use("nvim-lua/popup.nvim")
+	use("nvim-lua/plenary.nvim")
+	use("nvim-telescope/telescope.nvim")
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
-  -- LSP
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+	-- LSP
+	use("neovim/nvim-lspconfig")
+	use("williamboman/nvim-lsp-installer")
+	use("jose-elias-alvarez/null-ls.nvim")
+	use("jose-elias-alvarez/nvim-lsp-ts-utils")
 
+	-- Autocompletion
+	use("hrsh7th/nvim-cmp")
+	-- Sources for nvim-cmp
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-cmdline")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/cmp-vsnip")
+	use("hrsh7th/vim-vsnip")
 
-  -- Autocompletion
-  use 'hrsh7th/nvim-cmp' 
-  -- Sources for nvim-cmp
-  use 'hrsh7th/cmp-nvim-lsp' 
-  use 'hrsh7th/cmp-buffer' 
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-path'
+	use({
+		"bennypowers/nvim-regexplainer",
+		config = function()
+			require("regexplainer").setup()
+		end,
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+	})
 
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
-  
-  -- Smooth Scroll
-  use 'terryma/vim-smooth-scroll'
+	use("axieax/urlview.nvim")
 
-  -- Treesitter
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	-- Smooth Scroll
+	use("terryma/vim-smooth-scroll")
 
-  -- Cheatsheet
-  use 'RishabhRD/popfix'
-  use 'RishabhRD/nvim-cheat.sh'
+	-- Treesitter
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
-  -- Tpope goodness
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-rhubarb'
-  use 'tpope/vim-unimpaired'
+	-- Cheatsheet
+	use("RishabhRD/popfix")
+	use("RishabhRD/nvim-cheat.sh")
 
-  -- Status line
-  use 'nvim-lualine/lualine.nvim'
+	-- Tpope goodness
+	use("tpope/vim-fugitive")
+	use("tpope/vim-surround")
+	use("tpope/vim-repeat")
+	use("tpope/vim-commentary")
+	use("tpope/vim-rhubarb")
+	use("tpope/vim-unimpaired")
 
-  -- File Explorer
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    }
-  }
+	-- Status line
+	use("nvim-lualine/lualine.nvim")
+	-- use({
+	-- 	"tjdevries/express_line.nvim",
+	-- 	config = function()
+	-- 		require("es").seput()
+	-- 	end,
+	-- 	"nvim-lua/plenary.nvim",
+	-- })
 
-  use 'mbbill/undotree'
+	-- File Explorer
+	use({
+		"kyazdani42/nvim-tree.lua",
+		requires = {
+			"kyazdani42/nvim-web-devicons", -- optional, for file icon
+		},
+	})
 
-  -- File Jumping
-  use 'theprimeagen/harpoon'
+	use("mbbill/undotree")
 
-  -- Icons
-  use 'kyazdani42/nvim-web-devicons'
-  use 'folke/trouble.nvim'
+	-- File Jumping
+	use("theprimeagen/harpoon")
 
-  -- Colorschemes
-  use 'gruvbox-community/gruvbox'
-  use 'eddyekofo94/gruvbox-flat.nvim'
-  use 'sainnhe/gruvbox-material'
-  use 'EdenEast/nightfox.nvim'
+	-- Git Worktree
+	use("theprimeagen/git-worktree.nvim")
 
-  use 'edkolev/tmuxline.vim'
+	-- Icons
+	use("kyazdani42/nvim-web-devicons")
+	use("folke/trouble.nvim")
+
+	-- Colorschemes
+	use("gruvbox-community/gruvbox")
+	use("eddyekofo94/gruvbox-flat.nvim")
+	use("sainnhe/gruvbox-material")
+	use("mhartington/oceanic-next")
+	use("shatur/neovim-ayu")
+	use("pineapplegiant/spaceduck")
+	use("aktersnurra/no-clown-fiesta.nvim")
+	use({ "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" })
+	use("metalelf0/jellybeans-nvim")
 end)
-

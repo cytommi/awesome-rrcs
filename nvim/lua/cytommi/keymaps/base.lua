@@ -57,3 +57,6 @@ keymap("n", "<bs>", "<C-^>", opts)
 
 keymap("n", "<leader>cc", ':lua require("cytommi.utils").toggle_quick_fix()<cr>', opts)
 
+keymap("n", "n", "nzzzv", opts);
+keymap("n", "N", "Nzzzv", opts);
+

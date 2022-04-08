@@ -1,14 +1,27 @@
-vim.g.gruvbox_invert_selection = '0'
+-- gruvbox
+vim.g.gruvbox_invert_selection = "0"
+vim.g.gruvbox_contrast_dark = "hard"
+vim.g.gruvbox_italic = 1
+vim.g.gruvbox_italicize_string = 1
+
+-- gruvbox-material
+vim.g.gruvbox_material_background = "hard"
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_palette = "material"
+
+-- gruvbox-flat
+vim.g.gruvbox_flat_style = "hard"
+vim.g.gruvbox_transparent = true
 
 vim.cmd([[
-  set background=dark
-  colorscheme gruvbox
-  highlight CursorLineNR guibg=NONE ctermbg=NONE
+  colorscheme gruvbox-flat
   highlight ColorColumn ctermbg=0 guibg=#32302f
   highlight SignColumn guibg=NONE ctermbg=NONE
   highlight LineNr guifg=#665c54
+  highlight CursorLineNR guifg=#5eacd3 guibg=NONE ctermbg=NONE
   highlight netrwDir guifg=#5eacd3
   highlight qfFileName guifg=#aed75f
+
   highlight Normal guibg=NONE ctermbg=NONE
 
   " Telescope Colors
@@ -27,4 +40,5 @@ vim.cmd([[
 
   " Color the prompt prefix
   highlight TelescopePromptPrefix   guifg=#fabd2f
+
 ]])

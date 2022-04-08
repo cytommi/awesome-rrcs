@@ -6,12 +6,21 @@ local keymap = vim.api.nvim_set_keymap
 keymap("n", "<C-p>", ":lua require('cytommi.telescope').project_files()<cr>", opts)
 keymap("n", "<leader>ps", ":lua require('telescope.builtin').live_grep()<cr>", opts)
 keymap("n", "<leader>pf", ":lua require('telescope.builtin').grep_string()<cr>", opts)
+keymap("n", "<leader>pgc", ":lua require('telescope.builtin').git_commits()<cr>", opts)
+keymap("n", "<leader>pbc", ":lua require('telescope.builtin').git_bcommits()<cr>", opts)
+keymap("n", "<leader>pgs", ":lua require('telescope.builtin').git_stash()<cr>", opts)
+keymap("n", "<leader>pgb", ":lua require('cytommi.telescope').git_branches()<cr>", opts)
+keymap("n", "<leader>pr", ":lua require('telescope.builtin').resume()<cr>", opts)
 
-keymap("n", "<leader>pc", ":lua require('telescope.builtin').resume()<cr>", opts)
+keymap("n", "<leader>chc", ":lua require('telescope.builtin').colorscheme()<cr>", opts)
 
 -- git
-keymap("n", "<leader>gt", ":lua require('telescope.builtin').git_stash()<cr>", opts)
-keymap("n", "<leader>gb", ":lua require('cytommi.telescope').git_branches()<cr>", opts)
+keymap(
+	"n",
+	"<leader>pgw",
+	":lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+	{ noremap = true, silent = false }
+)
 
 -- custom
 keymap("n", "<leader>sc", ":lua require('cytommi.telescope').config_files()<cr>", opts)
