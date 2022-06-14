@@ -32,14 +32,14 @@ keymap("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>", opts)
 keymap("n", "<leader><cr>", ":so ~/.config/nvim/init.lua<cr>", opts)
 
 -- Delete without yanking
-keymap("n", "x", "\"_x", opts)
-keymap("v", "x", "\"_x", opts)
-keymap("n", "<leader>d", "\"_d", opts)
-keymap("v", "<leader>d", "\"_d", opts)
+keymap("n", "x", '"_x', opts)
+keymap("v", "x", '"_x', opts)
+-- keymap("n", "<leader>d", '"_d', opts)
+keymap("v", "<leader>d", '"_d', opts)
 
 -- Yanking
-keymap("n", "<leader>y", "\"+y", opts) -- copy to clipboard
-keymap("v", "<leader>y", "\"+y", opts) -- copy to clipboard
+keymap("n", "<leader>y", '"+y', opts) -- copy to clipboard
+keymap("v", "<leader>y", '"+y', opts) -- copy to clipboard
 
 -- Escape
 keymap("i", "kj", "<ESC>", opts)
@@ -57,6 +57,5 @@ keymap("n", "<bs>", "<C-^>", opts)
 
 keymap("n", "<leader>cc", ':lua require("cytommi.utils").toggle_quick_fix()<cr>', opts)
 
-keymap("n", "n", "nzzzv", opts);
-keymap("n", "N", "Nzzzv", opts);
-
+-- keymap("n", "n", "nzzzv", opts);
+-- keymap("n", "N", "Nzzzv", opts);

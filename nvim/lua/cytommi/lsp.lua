@@ -6,6 +6,11 @@ vim.diagnostic.config({
 	},
 })
 
+local function disable_formatting(client)
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local function on_attach(client, bufnr)
@@ -21,24 +26,26 @@ local function on_attach(client, bufnr)
 
 	-- (optional) Customize the options passed to the server
 	if client.name == "tsserver" then
-		-- Use null-ls for all formatting
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		disable_formatting(client)
 
-		local ts_utils = require("nvim-lsp-ts-utils")
-		ts_utils.setup({})
+		-- local ts_utils = require("nvim-lsp-ts-utils")
+		-- ts_utils.setup({})
+	end
+
+	if client.name == "sumneko_lua" then
+		disable_formatting(client)
 	end
 
 	if client.name == "denols" then
-		-- Use null-ls for all formatting
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		disable_formatting(client)
 	end
 
 	if client.name == "gopls" then
-		-- Use null-ls for all formatting
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		disable_formatting(client)
+	end
+
+	if client.name == "rust_analyzer" then
+		disable_formatting(client)
 	end
 
 	-- Mappings.
@@ -64,16 +71,6 @@ local function on_attach(client, bufnr)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
-	-- lspsaga overrides
-	-- buf_set_keymap('n', '<leader>ca', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
-	-- buf_set_keymap('n', 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-	-- buf_set_keymap('n', '<leader>sh', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
-	-- buf_set_keymap('n', '<leader>rn', "<cmd>lua require('lspsaga.rename').rename()<CR>", opts)
-	-- buf_set_keymap('n', '<leader>sd', "<cmd>lua require('lspsaga.provider').preview_definition()<CR>", opts)
-	-- buf_set_keymap('n', '<leader>e', "<cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>", opts)
-	-- buf_set_keymap('n', '<leader>]e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
-	-- buf_set_keymap('n', '<leader>[e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
 end
 
 lsp_installer.on_server_ready(function(server)

@@ -69,11 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["ayu-vim"] = {
-    loaded = true,
-    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/ayu-vim",
-    url = "https://github.com/ayu-theme/ayu-vim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -98,6 +93,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
+  },
+  ["darcula-solid.nvim"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/darcula-solid.nvim",
+    url = "https://github.com/briones-gabriel/darcula-solid.nvim"
   },
   ["git-worktree.nvim"] = {
     loaded = true,
@@ -124,15 +124,35 @@ _G.packer_plugins = {
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
   },
+  ["jellybeans-nvim"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/jellybeans-nvim",
+    url = "https://github.com/metalelf0/jellybeans-nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["lush.nvim"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/lush.nvim",
+    url = "https://github.com/rktjmp/lush.nvim"
+  },
+  ["neovim-ayu"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/neovim-ayu",
+    url = "https://github.com/shatur/neovim-ayu"
+  },
   ["no-clown-fiesta.nvim"] = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/no-clown-fiesta.nvim",
     url = "https://github.com/aktersnurra/no-clown-fiesta.nvim"
+  },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -163,6 +183,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-regexplainer"] = {
+    config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17regexplainer\frequire\0" },
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/nvim-regexplainer",
+    url = "https://github.com/bennypowers/nvim-regexplainer"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -229,6 +255,11 @@ _G.packer_plugins = {
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["urlview.nvim"] = {
+    loaded = true,
+    path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/urlview.nvim",
+    url = "https://github.com/axieax/urlview.nvim"
+  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/thomas.wang/.local/share/nvim/site/pack/packer/start/vim-commentary",
@@ -272,6 +303,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-regexplainer
+time([[Config for nvim-regexplainer]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17regexplainer\frequire\0", "config", "nvim-regexplainer")
+time([[Config for nvim-regexplainer]], false)
 if should_profile then save_profiles() end
 
 end)

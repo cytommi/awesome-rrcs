@@ -8,6 +8,7 @@ vim.g.gruvbox_italicize_string = 1
 vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_enable_italic = 1
 vim.g.gruvbox_material_palette = "material"
+vim.g.gruvbox_material_transparent_background = 1
 
 -- gruvbox-flat
 vim.g.gruvbox_flat_style = "hard"

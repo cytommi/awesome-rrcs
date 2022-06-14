@@ -24,6 +24,15 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-vsnip")
 	use("hrsh7th/vim-vsnip")
 
+	-- Language specific tools
+	-- Rust
+	-- use({
+	-- 	"simrat39/rust-tools.nvim",
+	-- 	config = function()
+	-- 		require("rust-tools").setup({})
+	-- 	end,
+	-- })
+
 	use({
 		"bennypowers/nvim-regexplainer",
 		config = function()
@@ -34,6 +43,9 @@ return require("packer").startup(function(use)
 			"MunifTanjim/nui.nvim",
 		},
 	})
+
+	-- debugging
+	use("mfussenegger/nvim-dap")
 
 	use("axieax/urlview.nvim")
 
@@ -95,4 +107,8 @@ return require("packer").startup(function(use)
 	use("aktersnurra/no-clown-fiesta.nvim")
 	use({ "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" })
 	use("metalelf0/jellybeans-nvim")
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+	})
 end)

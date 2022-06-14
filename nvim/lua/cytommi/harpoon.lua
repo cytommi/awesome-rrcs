@@ -19,7 +19,7 @@ require("harpoon").setup({
 		mark_branch = false,
 	},
 	projects = {
-		["/home/thomas.wang/src/devplatform"] = {
+		["/home/thomas.wang/src/devvit"] = {
 			term = {
 				cmds = {
 					"yarn build",
@@ -27,7 +27,7 @@ require("harpoon").setup({
 				},
 			},
 		},
-		["/home/thomas.wang/src/devplatform/main"] = {
+		["/home/thomas.wang/src/devvit/main"] = {
 			term = {
 				cmds = {
 					"yarn build",
@@ -35,7 +35,7 @@ require("harpoon").setup({
 				},
 			},
 		},
-		["/home/thomas.wang/src/devplatform/dev"] = {
+		["/home/thomas.wang/src/devvit/dev"] = {
 			term = {
 				cmds = {
 					"yarn build",
