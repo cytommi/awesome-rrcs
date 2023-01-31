@@ -6,10 +6,11 @@ require("lualine").setup({
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = {},
 		always_divide_middle = false,
+		globalstatus = true,
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch", "diagnostics" },
+		lualine_b = { "branch", "diff", "diagnostics" },
 		lualine_c = {
 			{
 				"filename",

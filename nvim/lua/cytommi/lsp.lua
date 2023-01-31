@@ -6,47 +6,19 @@ vim.diagnostic.config({
 	},
 })
 
-local function disable_formatting(client)
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
-end
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local function on_attach(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
+
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
 
 	-- Enable completion triggered by <c-x><c-o>
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	-- (optional) Customize the options passed to the server
-	if client.name == "tsserver" then
-		disable_formatting(client)
-
-		-- local ts_utils = require("nvim-lsp-ts-utils")
-		-- ts_utils.setup({})
-	end
-
-	if client.name == "sumneko_lua" then
-		disable_formatting(client)
-	end
-
-	if client.name == "denols" then
-		disable_formatting(client)
-	end
-
-	if client.name == "gopls" then
-		disable_formatting(client)
-	end
-
-	if client.name == "rust_analyzer" then
-		disable_formatting(client)
-	end
 
 	-- Mappings.
 	local opts = { noremap = true, silent = true }

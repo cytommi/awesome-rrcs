@@ -35,12 +35,11 @@ require("telescope").setup({
 		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 		color_devicons = true,
 		use_less = true,
-		path_display = {},
+		path_display = { "truncate" },
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
 		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-
 		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 
@@ -69,6 +68,7 @@ require("telescope").setup({
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("git_worktree")
+require("telescope").load_extension("ui-select")
 
 local M = {}
 M.git_branches = function()

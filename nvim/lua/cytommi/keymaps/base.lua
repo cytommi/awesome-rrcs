@@ -10,6 +10,7 @@ keymap("", "<Space>", "<Nop>", opts)
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.cmdheight = 0
 
 -- Modes
 --   normal_mode = "n",
@@ -34,8 +35,11 @@ keymap("n", "<leader><cr>", ":so ~/.config/nvim/init.lua<cr>", opts)
 -- Delete without yanking
 keymap("n", "x", '"_x', opts)
 keymap("v", "x", '"_x', opts)
--- keymap("n", "<leader>d", '"_d', opts)
+keymap("n", "<leader>d", '"_d', opts)
 keymap("v", "<leader>d", '"_d', opts)
+
+keymap("x", "<leader>p", '"_dp', opts)
+keymap("x", "<leader>P", '"_dP', opts)
 
 -- Yanking
 keymap("n", "<leader>y", '"+y', opts) -- copy to clipboard
@@ -49,6 +53,9 @@ keymap("i", "KJ", "<ESC>", opts)
 keymap("i", "<C-e><C-n>", "<ESC>", opts)
 keymap("t", "<C-e><C-n>", "<C-\\><C-n>", term_opts)
 
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
 -- No more :Q error
 keymap("i", ":Q", ":q", opts)
 
@@ -57,5 +64,8 @@ keymap("n", "<bs>", "<C-^>", opts)
 
 keymap("n", "<leader>cc", ':lua require("cytommi.utils").toggle_quick_fix()<cr>', opts)
 
--- keymap("n", "n", "nzzzv", opts);
--- keymap("n", "N", "Nzzzv", opts);
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
+
+-- keymap("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true })
+-- keymap("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true })

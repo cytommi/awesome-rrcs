@@ -7,6 +7,11 @@ return require("packer").startup(function(use)
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({ "nvim-telescope/telescope-ui-select.nvim" })
+
+	-- for :Ag only, live_grep is kinda not great
+	use({ "junegunn/fzf", run = "./install --bin" })
+	use("junegunn/fzf.vim")
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
@@ -17,12 +22,24 @@ return require("packer").startup(function(use)
 	-- Autocompletion
 	use("hrsh7th/nvim-cmp")
 	-- Sources for nvim-cmp
+	-- use("hrsh7th/cmp-copilot")
 	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-vsnip")
 	use("hrsh7th/vim-vsnip")
+	use("hrsh7th/cmp-nvim-lsp-signature-help")
+
+	-- html (sigh)
+	use({
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	})
+	use("mattn/emmet-vim")
 
 	-- Language specific tools
 	-- Rust
@@ -32,22 +49,10 @@ return require("packer").startup(function(use)
 	-- 		require("rust-tools").setup({})
 	-- 	end,
 	-- })
-
-	use({
-		"bennypowers/nvim-regexplainer",
-		config = function()
-			require("regexplainer").setup()
-		end,
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-		},
-	})
+	use("solarnz/thrift.vim")
 
 	-- debugging
 	use("mfussenegger/nvim-dap")
-
-	use("axieax/urlview.nvim")
 
 	-- Smooth Scroll
 	use("terryma/vim-smooth-scroll")
@@ -56,8 +61,8 @@ return require("packer").startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
 	-- Cheatsheet
-	use("RishabhRD/popfix")
-	use("RishabhRD/nvim-cheat.sh")
+	-- use("RishabhRD/popfix")
+	-- use("RishabhRD/nvim-cheat.sh")
 
 	-- Tpope goodness
 	use("tpope/vim-fugitive")
@@ -69,13 +74,7 @@ return require("packer").startup(function(use)
 
 	-- Status line
 	use("nvim-lualine/lualine.nvim")
-	-- use({
-	-- 	"tjdevries/express_line.nvim",
-	-- 	config = function()
-	-- 		require("es").seput()
-	-- 	end,
-	-- 	"nvim-lua/plenary.nvim",
-	-- })
+	-- use("vimpostor/vim-tpipeline")
 
 	-- File Explorer
 	use({
@@ -111,4 +110,14 @@ return require("packer").startup(function(use)
 		"catppuccin/nvim",
 		as = "catppuccin",
 	})
+	use("folke/tokyonight.nvim")
+	use("andersevenrud/nordic.nvim")
+	use("rebelot/kanagawa.nvim")
+	use("EdenEast/nightfox.nvim")
+	use("savq/melange")
+	use("rafamadriz/neon")
+	use("AlessandroYorba/Alduin")
+	use("whatsthatsmell/codesmell_dark.vim")
+
+	use("github/copilot.vim")
 end)

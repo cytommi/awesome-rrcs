@@ -3,10 +3,9 @@ local options = {
 	softtabstop = 2,
 	shiftwidth = 2,
 	completeopt = { "menuone", "noselect" },
-	signcolumn = 'yes',
+	signcolumn = "yes",
 	scrolloff = 8,
-	colorcolumn = '80',
-	cmdheight = 2,
+	colorcolumn = "80",
 	updatetime = 50,
 	timeoutlen = 500,
 	exrc = true,
@@ -25,9 +24,13 @@ local options = {
 	undofile = true,
 	incsearch = true,
 	termguicolors = true,
+	laststatus = 3,
+	showmode = false,
 }
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
+-- vim.o.ch = 0
+-- vim.o.ls = 0
