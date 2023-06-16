@@ -4,7 +4,7 @@
 vim.g.neon_style = "default"
 vim.g.neon_italic_keyword = true
 vim.g.neon_italic_function = true
-vim.g.neon_transparent = true
+vim.g.neon_transparent = false
 
 -- gruvbox
 vim.g.gruvbox_invert_selection = "0"
@@ -17,12 +17,12 @@ vim.g.gruvbox_bold = "0"
 vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_enable_italic = 1
 vim.g.gruvbox_material_palette = "material"
-vim.g.gruvbox_material_transparent_background = 1
+vim.g.gruvbox_material_transparent_background = 0
 
 -- gruvbox-flat
 vim.g.gruvbox_flat_style = "dark"
-vim.g.gruvbox_flat_transparent = true
-vim.g.gruvbox_transparent = true
+vim.g.gruvbox_flat_transparent = false
+vim.g.gruvbox_transparent = false
 vim.g.gruvbox_dark_sidebar = false
 
 -- catppuccin
@@ -31,15 +31,14 @@ vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 vim.o.background = "dark"
 
 require("kanagawa").setup({
-	transparent = true,
+	transparent = false,
 })
 
 require("catppuccin").setup({
 	transparent_background = true,
-
 	integrations = {
 		nvimtree = {
-			transparent_panel = true,
+			transparent_panel = false,
 		},
 	},
 })
@@ -52,6 +51,27 @@ require("tokyonight").setup({
 	transparent = true,
 })
 
+require("poimandres").setup({
+	bold_vert_split = false, -- use bold vertical separators
+	dim_nc_background = false, -- dim 'non-current' window backgrounds
+	disable_background = true, -- disable background
+	disable_float_background = true, -- disable background for floats
+	disable_italics = false, -- disable italics
+})
+
+require("rose-pine").setup({
+	dim_nc_background = true,
+	disable_background = false,
+	disable_float_background = true,
+	styles = {
+		float = "transparent",
+		sidebars = "transparent",
+	},
+	transparent = true,
+})
+
+require("monokai-pro").setup()
+
 -- colorscheme kanagawa
 vim.cmd([[
   colorscheme gruvbox-flat
@@ -61,7 +81,7 @@ vim.cmd([[
   highlight CursorLineNR guifg=#665c54 guibg=NONE ctermbg=NONE
   highlight netrwDir guifg=#5eacd3
   highlight qfFileName guifg=#aed75f
-  highlight Normal guibg=NONE ctermbg=NONE
+  " highlight Normal guibg=NONE ctermbg=NONE
 
   " Telescope Colors
   highlight TelescopeSelection      guifg=#5eacd3 gui=bold " Selected item

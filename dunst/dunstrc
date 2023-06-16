@@ -1,0 +1,17 @@
+[global]
+    font = "JetBrains Mono Medium 8"
+    monitor = 1
+    origin = top-right
+    offset = 10x10
+    shrink = no
+    indicate_hidden = yes
+
+[frame]
+    width = 0
+    color = "0xd4be98"
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+comma

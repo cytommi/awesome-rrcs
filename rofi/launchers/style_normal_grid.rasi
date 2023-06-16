@@ -20,15 +20,15 @@ configuration {
 	hide-scrollbar: true;
 	bw: 0;
     fullscreen: false;
-    show-icons: true;
-	terminal: "termite";
+    show-icons: false;
+	terminal: "alacritty";
 	sidebar-mode: false;
 }
 
 @import "colors.rasi"
 
 * {
-  text-font:                            "Iosevka 12";
+  text-font:                            "JetBrains Mono 35";
 
   inputbar-margin:                      3px 3px;
   prompt-padding:                       10px 10px;

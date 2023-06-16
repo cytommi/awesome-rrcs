@@ -14,6 +14,6 @@
 # style_normal_grid_round    style_normal_purple    style_normal_purple_alt    style_normal_rainbow
 # style_normal_rainbow_sidebar
 
-style="style_icons_blur"
+style="style_normal_grid"
 
-rofi -no-lazy-grab -show drun -theme launchers/"$style".rasi
+rofi -no-lazy-grab -show drun # -theme launchers/"$style".rasi

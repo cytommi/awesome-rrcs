@@ -1,3 +1,4 @@
+vim.fn.setenv("OPENAI_API_KEY", "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")
 require("cytommi.cmp")
 require("cytommi.colorscheme")
 require("cytommi.copilot")

@@ -1,10 +1,11 @@
-local lsp_installer = require("nvim-lsp-installer")
-
 vim.diagnostic.config({
 	float = {
 		source = "always",
 	},
 })
+
+require("mason").setup()
+require("mason-lspconfig").setup()
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -45,12 +46,16 @@ local function on_attach(client, bufnr)
 	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-lsp_installer.on_server_ready(function(server)
-	local opts = {}
-	server:setup({
-		on_attach = on_attach,
-		flags = {
-			debounce_text_changes = 150,
-		},
-	})
-end)
+require("mason-lspconfig").setup_handlers({
+	-- The first entry (without a key) will be the default handler
+	-- and will be called for each installed server that doesn't have
+	-- a dedicated handler.
+	function(server_name) -- default handler (optional)
+		require("lspconfig")[server_name].setup({
+			on_attach = on_attach,
+			flags = {
+				debounce_text_changes = 150,
+			},
+		})
+	end,
+})
