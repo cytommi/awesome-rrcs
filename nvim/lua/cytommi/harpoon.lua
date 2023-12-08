@@ -19,27 +19,10 @@ require("harpoon").setup({
 		mark_branch = false,
 	},
 	projects = {
-		["/home/thomas.wang/src/devvit"] = {
+		["~/d/devvit"] = {
 			term = {
 				cmds = {
-					"yarn build",
-					"yarn clean && yarn && yarn build --force",
-				},
-			},
-		},
-		["/home/thomas.wang/src/devvit/main"] = {
-			term = {
-				cmds = {
-					"yarn build",
-					"yarn clean && yarn && yarn build --force",
-				},
-			},
-		},
-		["/home/thomas.wang/src/devvit/dev"] = {
-			term = {
-				cmds = {
-					"yarn build",
-					"yarn clean && yarn && yarn build --force",
+					"kubectl rollout restart deploy reddit-service-devvit-dev-portal",
 				},
 			},
 		},

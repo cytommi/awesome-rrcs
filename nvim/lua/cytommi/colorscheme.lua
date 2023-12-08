@@ -74,7 +74,6 @@ require("monokai-pro").setup()
 
 -- colorscheme kanagawa
 vim.cmd([[
-  colorscheme gruvbox-flat
   highlight SignColumn guibg=NONE ctermbg=NONE
   highlight ColorColumn ctermbg=0 guibg=#32302f
   highlight LineNr guifg=#665c54
@@ -99,4 +98,7 @@ vim.cmd([[
 
   " Color the prompt prefix
   highlight TelescopePromptPrefix   guifg=#fabd2f
+
+  colorscheme onedark
 ]])
+-- colorscheme onedark

@@ -59,3 +59,17 @@ require("mason-lspconfig").setup_handlers({
 		})
 	end,
 })
+
+local lspconfig = require("lspconfig")
+local configs = require("lspconfig.configs")
+
+if not configs.starlark_lsp then
+	configs.starlark_lsp = {
+		default_config = {
+			cmd = { "tilt lsp start --debug" },
+			root_dir = lspconfig.util.root_pattern(".git"),
+			filetypes = { "starlark" },
+		},
+	}
+end
+lspconfig.starlark_lsp.setup({})

@@ -15,26 +15,28 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.autopep8,
 		null_ls.builtins.formatting.gofmt,
+		null_ls.builtins.formatting.goimports,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.taplo,
 		null_ls.builtins.formatting.tidy,
-		null_ls.builtins.formatting.rustfmt.with({
-			extra_args = function(params)
-				local Path = require("plenary.path")
-				local cargo_toml = Path:new(params.root .. "/" .. "Cargo.toml")
+		null_ls.builtins.formatting.rustfmt,
+		-- null_ls.builtins.formatting.rustfmt.with({
+		-- 	extra_args = function(params)
+		-- 		local Path = require("plenary.path")
+		-- 		local cargo_toml = Path:new(params.root .. "/" .. "Cargo.toml")
 
-				if cargo_toml:exists() and cargo_toml:is_file() then
-					for _, line in ipairs(cargo_toml:readlines()) do
-						local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
-						if edition then
-							return { "--edition=" .. edition }
-						end
-					end
-				end
-				-- default edition when we don't find `Cargo.toml` or the `edition` in it.
-				return { "--edition=2021" }
-			end,
-		}),
+		-- 		if cargo_toml:exists() and cargo_toml:is_file() then
+		-- 			for _, line in ipairs(cargo_toml:readlines()) do
+		-- 				local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
+		-- 				if edition then
+		-- 					return { "--edition=" .. edition }
+		-- 				end
+		-- 			end
+		-- 		end
+		-- 		-- default edition when we don't find `Cargo.toml` or the `edition` in it.
+		-- 		return { "--edition=2021" }
+		-- 	end,
+		-- }),
 	},
 	debug = true,
 	-- you can reuse a shared lspconfig on_attach callback here
