@@ -1,5 +1,4 @@
 local opts = { noremap = true, silent = true }
-
 local term_opts = { silent = true }
 
 -- shorten function name
@@ -10,7 +9,6 @@ keymap("", "<Space>", "<Nop>", opts)
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.cmdheight = 0
 
 -- Modes
 --   normal_mode = "n",
@@ -67,5 +65,3 @@ keymap("n", "<leader>cc", ':lua require("cytommi.utils").toggle_quick_fix()<cr>'
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
--- keymap("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true })
--- keymap("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true })

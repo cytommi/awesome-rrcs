@@ -27,10 +27,7 @@ local options = {
 	laststatus = 3,
 	showmode = false,
 }
-
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
--- vim.o.ch = 0
--- vim.o.ls = 0
