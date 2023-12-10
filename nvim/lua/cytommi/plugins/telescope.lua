@@ -72,29 +72,48 @@ return {
         },
       },
     })
+
     require("telescope").load_extension("ui-select")
 
+    local builtin = require("telescope.builtin")
+
     -- keymaps
-    local opts = { noremap = true, silent = true }
+    local keymap = vim.keymap.set
 
-    local keymap = vim.api.nvim_set_keymap
+    keymap("n", "<C-p>", function()
+      local opts = {} -- define here if you want to define something
+      local ok = pcall(builtin.git_files, opts)
+      if not ok then
+        builtin.find_files(opts)
+      end
+    end)
 
-    -- files searching
-    -- keymap("n", "<C-p>", ":lua require('telescope.builtin').git_files()<cr>", opts)
-    keymap("n", "<C-p>", ":lua require('cytommi.utils.telescope').project_files()<cr>", opts)
-    keymap("n", "<leader>py", ":lua require('cytommi.utils.telescope').fuzzy_live_grep()<cr>", opts)
-    keymap("n", "<leader>pgb", ":lua require('cytommi.utils.telescope').git_branches()<cr>", opts)
+    keymap("n", "<leader>pgb", function()
+      builtin.git_branches({
+        attach_mappings = function(_, map)
+          map("i", "<c-d>", actions.git_delete_branch)
+          map("n", "<c-d>", actions.git_delete_branch)
+          return true
+        end,
+      })
+    end)
 
-    keymap("n", "<leader>ps", ":lua require('telescope.builtin').live_grep()<cr>", opts)
-    keymap("n", "<leader>pf", ":lua require('telescope.builtin').grep_string()<cr>", opts)
-    keymap("n", "<leader>pgc", ":lua require('telescope.builtin').git_commits()<cr>", opts)
-    keymap("n", "<leader>pbc", ":lua require('telescope.builtin').git_bcommits()<cr>", opts)
-    keymap("n", "<leader>pgs", ":lua require('telescope.builtin').git_stash()<cr>", opts)
-    keymap("n", "<leader>pr", ":lua require('telescope.builtin').resume()<cr>", opts)
-    keymap("n", "<leader>po", ":lua require('telescope.builtin').oldfiles()<cr>", opts)
-    keymap("n", "<leader>chc", ":lua require('telescope.builtin').colorscheme()<cr>", opts)
+    keymap("n", "<leader>sc", function()
+      builtin.find_files({
+        prompt_title = "< CONFIG >",
+        cwd = "~/.config/",
+      })
+    end)
+
+    keymap("n", "<leader>ps", builtin.live_grep)
+    keymap("n", "<leader>pf", builtin.grep_string)
+    keymap("n", "<leader>pgc", builtin.git_commits)
+    keymap("n", "<leader>pbc", builtin.git_bcommits)
+    keymap("n", "<leader>pgs", builtin.git_stash)
+    keymap("n", "<leader>pr", builtin.resume)
+    keymap("n", "<leader>po", builtin.oldfiles)
+    keymap("n", "<leader>chc", builtin.colorscheme)
 
     -- custom
-    keymap("n", "<leader>sc", ":lua require('cytommi.utils.telescope').config_files()<cr>", opts)
   end,
 }

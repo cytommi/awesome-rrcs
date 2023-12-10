@@ -2,7 +2,7 @@ local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
 -- shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- Leader Key
 keymap("", "<Space>", "<Nop>", opts)
@@ -64,4 +64,3 @@ keymap("n", "<leader>cc", ':lua require("cytommi.utils").toggle_quick_fix()<cr>'
 
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
-
